@@ -1,16 +1,20 @@
 import Layout from './components/layout';
-import Ecosystem from './components/Ecosystem';
-import ProjectGrid from './components/ProjectGrid';
-import { motion } from 'framer-motion';
+import NavOverlay from './navigation/NavOverlay';
+import NavTrigger from './navigation/NavTrigger';
+import { NavigationProvider } from './navigation/NavigationContext';
+import PageTransition from './navigation/PageTransition';
+import PageRouter from './pages/PageRouter';
 
 export default function App() {
   return (
-    <Layout>
-      <section className="h-[80vh] flex flex-col justify-center items-center">
-        <motion.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-8xl tracking-tighter">MOTION</motion.h1>
-      </section>
-      <Ecosystem />
-      <ProjectGrid />
-    </Layout>
+    <NavigationProvider>
+      <Layout>
+        <NavTrigger />
+        <NavOverlay />
+        <PageTransition>
+          <PageRouter />
+        </PageTransition>
+      </Layout>
+    </NavigationProvider>
   );
 }

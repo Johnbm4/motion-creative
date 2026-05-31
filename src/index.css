@@ -3,7 +3,44 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    @apply bg-void;
+  }
+
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
   body {
-    @apply bg-black text-white antialiased selection:bg-white selection:text-black;
+    @apply bg-void text-white antialiased font-sans font-light;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    @apply bg-white text-black;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .motion-layer {
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+}
+
+@layer components {
+  .scene-section {
+    content-visibility: auto;
+    contain-intrinsic-size: 150vh;
   }
 }
